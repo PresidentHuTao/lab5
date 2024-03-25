@@ -12,18 +12,22 @@ public class SanPhamService {
         listSP.add(sp);
     }
 
-    private void updateSP(String id, NewSanPham nsp) { //truyền dữ liệu cho đối tượng nsp trước khi update
-        for (SanPham sp : listSP) {
-            if (sp.getId().equals(id)) { //kiểu dữ liệu của id đang là string nên cần dùng equals thay vì ==
-                sp.setMaSanPham(nsp.getNewMaSanPham());
-                sp.setTenSanPham(nsp.getNewTenSanPham());
-                sp.setGia(nsp.getNewGia());
-                sp.setMauSac(nsp.getNewMauSac());
-                sp.setKichThuoc(nsp.getNewKichThuoc());
-                sp.setSoLuong(nsp.getNewSoLuong());
+  public void updateSP(SanPham sp) {
+        int index = -1;
+        for (SanPham sp1 : listSP)  {
+            if (sp1.getId().equals(sp.getId())) {
+                index = listSP.indexOf(sp1);
                 break;
             }
         }
+        if (index != -1) {
+            listSP.set(index,sp);
+        }
+    }
+
+    public ArrayList<SanPham> getListSP() {
+        return listSP;
+    }
     }
 
     public void deleteSP(String id) {
